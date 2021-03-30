@@ -1,0 +1,64 @@
+AIT MOUNA:Rida
+ALDANA VALVERDE:Pablo
+BENICHOU:Yaniv
+BETHUNE:Nicolas
+CAMMARATA:Hugo
+DA SILVA PONTES:Joel Kalil
+DESSART:Martin
+DUFRESNE:Hugo
+FAVRE:Guillaume
+GAZEAU:Gregoire
+GIBIER:Paul-Ewen
+GUIMARAES DE MOURA:Matheus
+KIROV:David
+LECKERT:Stanley
+LINERO:Yann
+MALTA PURIM:Andreis Gustavo
+MALTAVERNE:Julien
+MARCIANO:Samuel
+MOREL FILLON:Antonin
+MOUKHAFI:Ahmed
+OUARDI:Ilyas
+PERROT:Mathieu
+POUGET:Thomas
+PRUDHOMME:Colin
+ROBINEAU:Joseph
+RODRIGUEZ:Pierre
+ROURE:Julien
+SANTOS PENHA DE OLIVEIRA:Joao Lucas
+SIDIBE:Amara
+SIMON:Loic
+SUN:Yishan
+THIBAULT:Alexandre
+VASSEUR:Henri
+ASKOUR:Soufiane
+BENARD:Julien
+BONNIN:Olivier
+CAMPOS COSTA:Eliot
+CAPLAN:Jean-Baptiste
+CHAOUI:Amal
+CLAVEL:Paul
+COHEN:Benjamin
+DAMMARETZ:Remy
+DARGAUD:Laurine
+ESCOURROU:Antoine
+FREMERYE:Louis
+GELINAS:Sebastien
+GILLES:Theo-Gabriel
+GOMEZ COLOMER:Asuncion Carolina
+GRESILLON:Leo
+HADJ-BOUZID:Rayan
+MACUDZINSKI:Matyas
+MILHIET:Louis
+PELLOUX:Alexandre
+PINHEIRO MELO:Daniel
+PINHEIRO MELO:Joao Paulo
+PLOTTON:Matthieu
+SALEM:Emilie
+SUISSA:Deborah
+VALIAU:Virgile
+VEYSSEYRE:Robin
+WANG:Celine
+WU:Bowen
+CECHURA:Tom
+JEAN:Matthieu

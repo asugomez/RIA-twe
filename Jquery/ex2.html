@@ -1,0 +1,80 @@
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+
+<script>
+    function toggle(){
+        console.log("toggle");
+        //$("#contenu *").show();
+
+        // tester l'existence d'un bouton portant un certain attribut
+        // V1: chercher le bouton, récupérer le nombre d'élements sélectionnés ----> length
+        console.log($("input[value='Afficher']").length);
+
+        //if $("input[value='Afficher']").length > 0  c'est pareil à if $("input[value='Afficher']").length 
+        if($("#contenu").hasClass("hidden")){
+            $("input[value='Afficher']").val("Cacher");
+        } else{
+            $("input[value='Cacher']").val("Afficher");
+        }
+
+        $("#contenu").toggleClass("hidden");
+    }
+ 
+    var jP = $("<p>").html("Nouveau P.");
+
+    /*function addP(emplacement){
+        console.log("addP");
+        
+        if(emplacement == 'H'){
+            //on ajoute un clon
+            $("#contenu").prepend(jP.clone());
+        }else{
+            $("#contenu").append(jP.clone());
+        }
+    }*/
+
+    function addP(emplacement, refBtnAdd){
+        //transformer une référence js en réf. jQuery
+        var bBtnAdd = $(refBtnAdd);
+        var contenu = jBtnAdd.prev().val();
+        var nextP = jclone();
+        if(contenu!="") nextP.html(contenu);
+
+        console.log("addP");
+
+        if(emplacement == 'H'){
+            //on ajoute un clon
+            $("#contenu").prepend(nextP);
+        }else{
+            $("#contenu").append(nextP);
+        }
+        
+    }
+    
+</script>
+
+<style>
+#contenu.hidden *{display:none;}
+#contenu{
+    margin:10px; 
+    padding:10px; 
+    border:1px solid black;}
+</style>
+
+<body>
+    <input type="button" onclick="toggle();" value="Afficher"/>
+    <input type="text" placeholder="futur contenu"/>
+    <input type="button" onclick="addP('H',this)" value="+"/>
+
+
+    
+    <div id="contenu" class="hidden">
+        <p> Premier P.</p>
+        <p> Second P.</p>
+    </div>
+
+    <input type="button" onclick="toggle();" value="Afficher"/>
+    <input type="text" placeholder="futur contenu"/>
+    <input type="button" onclick="addP('B',this)" value="+"/>
+
+
+</body>

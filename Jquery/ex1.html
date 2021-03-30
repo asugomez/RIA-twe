@@ -1,0 +1,41 @@
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+
+<script>
+    function decollage(){
+        var taille = $(".exemple").addClass("allume").show("slow").length;
+
+
+        console.log(taille);
+        
+        // $ <=> alias pour la fonction jQuery
+        /**
+        * $(selecteurCSS)
+            renvoie un objet représentant
+            un ensemble de balises du DOM
+
+            de nombreuses méthodes jquery manipulent tous les élements
+        */
+    }
+</script>
+
+<style>
+.allume{
+    background-color:yellow;
+}
+
+.exemple{
+    display:none;
+}
+</style>
+
+<body>
+    <input type="button" onclick="decollage();" value="GO"/>
+
+    <p> Un p. 1</p>
+    <p class="exemple"> Un p.2 </p>
+    <p class="exemple"> Un p.3 </p>
+
+    <div> Un div 1</div>
+    <div class="exemple"> Un div 2</div>
+    <div class="exemple"> Un div 3</div>
+</body>

@@ -1,0 +1,27 @@
+<script>
+// Focus sur les fermetures (aka "closure")
+// http://www.w3schools.com/js/js_function_closures.asp
+
+var compteur=0; 
+
+function trace(s) {
+	console.log(compteur + " " + s);
+	compteur++;
+} 
+
+function mkTrace() {
+	var compteur_interne=0;
+	return function(s){
+		console.log(compteur_interne + " " + s);
+		compteur_interne++;
+	}
+}
+
+// Chaque appel à la fonction mkTrace génère un scope qui ne disparaît pas après la fin de l'exécution de la fonction. 
+
+var trace2 = mkTrace(); 
+var trace3 = mkTrace(); 
+
+// Chacune des fonctions trace<i> manipule son propre scope qui contient une variable compteur_interne différente
+
+</script>

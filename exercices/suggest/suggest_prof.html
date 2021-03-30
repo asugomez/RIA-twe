@@ -1,0 +1,161 @@
+<head>
+<style> /*Présentation*/
+
+#cadreSuggest {
+	display:inline;
+	position:relative;/* devient un repère pour ses enfants*/
+}
+#saisie {	
+	padding:2px;
+	border:1px solid black;
+	width:200px;
+	height:30px;
+	padding-right:26px;
+}
+#imgLoad {
+	display:none;
+	position:absolute;
+	left:180px;
+	top:2px;
+}
+#suggestions {
+	display:none;
+	padding-left:0px;
+	position:absolute;
+	border:1px solid black;
+	border-top:none;
+	left:0px;
+	top:9px;
+	right:0px;
+}
+#suggestions li {
+	display:block; /* valait list-item */
+	padding: 2px;
+}
+#suggestions li:hover {
+	background-color:lightgrey;
+	cursor:pointer;
+}
+</style>
+
+<script src="js/ajax_refacto.js"></script>
+<script>
+// Penser à initialiser des références vers les éléments de la page
+// au moment où le navigateur a terminé le chargement 
+var refSaisie = null; 
+var refSuggestions= null; 
+var refImgLoad= null; 
+function init() {
+	refSaisie = document.getElementById("saisie"); 
+	refSuggestions = document.getElementById("suggestions"); 
+	refImgLoad = document.getElementById("imgLoad"); 
+}
+// 3 Interactions : 
+function suggerer(){
+	// 1) saisie d'un caractère dans le champ d'entrée texte 
+	// => déclencher une requete ajax pour récupérer des suggestions 
+	// (pour l'instant, juste afficher les suggestions déjà prêtes dans la structure)
+	var contenu = refSaisie.value;
+	console.log("contenu :" + contenu);
+	if (contenu == "") {
+		refSuggestions.style.display="none";
+		refImgLoad.style.display="none";
+	}
+	else {
+		// TODO: SEULEMENT si le contenu a changé !!
+	
+		// => afficher l'image de chargement
+		refImgLoad.style.display="block"; 
+		// déclencher une requete ajax ...
+		// page cible : fixture.php  
+
+		// utiliser js/ajax.js 
+		// function envoiRequete(type,url,donnees,callback)
+		// envoiRequete("GET","fixture.php","",integration);
+		ajax({url: "fixture.php", callback: integration});
+		// utiliser js/ajax_refacto.js 
+		// fonction ajax({	url: ,
+		//					[type: ,] 
+		//					[callback: ,] 
+		//					[data:{cle:val,cle2:val2}]
+		//				})
+
+		// qui appelera integration() lorsque le serveur aura répondu 
+		// window.setTimeout(integration,2000);
+	}
+}
+
+function integration(reponse) {
+	console.log("integration : data recue : " + reponse);
+	// on insère les données dans le cadre de suggestions 
+	refSuggestions.innerHTML = reponse; 
+	// on affiche le cadre de suggestions  
+	refSuggestions.style.display="block";
+	// on cache l'image 
+	refImgLoad.style.display="none";	
+}
+
+function choisir(contexte){
+	// 2) click sur une des suggestions 
+	// onclick à placer sur la balise ul 
+	// comment récupérer l'élément cliqué ? 	
+	var refItemClique = contexte.target;
+	console.log("click sur " + refItemClique.innerHTML); 
+
+	// insérer l'élément cliqué dans le champ texte
+	refSaisie.value = refItemClique.innerHTML; 
+
+	// => cacher les suggestions
+	refSuggestions.style.display="none";
+}
+
+function annuler(contexte){
+	// 3) appui sur ESC 
+	// comment trouver le code de la touche appuyée ?
+	// => cacher les suggestions, vider le champ texte 
+	
+	console.log(contexte.keyCode);
+	console.log(contexte.key);
+	if (contexte.key == "Escape") {
+		// => cacher les suggestions
+		refSuggestions.style.display="none";
+		// on cache l'image 
+		refImgLoad.style.display="none";
+		// vider le champ texte
+		refSaisie.value = ""; 
+		
+	}
+}
+
+/*
+// this dénote une référence vers l'élément cible de l'événement 
+<input type="text" onkeyup="suggerer(this);"/>
+La fonction suggerer reçoit une référence vers le champ texte 
+function suggerer(refChampTexte) {
+	console.log(refChampTexte.value); 
+}
+
+// event dénote le contexte de l'événement qui se produit 
+// C'est un objet qui des informations sur 
+// 		* les touches appuyées (Shift, Ctrl, Alt ?)
+//		* la position de la souris
+//		* l'élément générateur de l'événement  (target) 
+function suggerer(contexte) {
+	console.log(contexte); 
+}
+*/
+</script>
+
+</head>
+<body onload="init();" onkeyup="annuler(event);"> <!-- Structure --> 
+Pr&eacute;nom &eacute;tudiant  : 
+
+<div id="cadreSuggest">
+	<input id="saisie" type="text" value="" onkeyup="suggerer();"/>
+	<img id="imgLoad" src="ressources/ajaxLoader.gif" />
+	<ul id="suggestions" onclick="choisir(event);">
+	</ul>
+<div> 
+
+
+</body>

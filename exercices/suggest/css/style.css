@@ -1,0 +1,42 @@
+
+#cadreSuggest{
+    /*border: 1px solid black;*/
+    display: inline;
+    position: relative;
+}
+
+#saisie{
+    width: 200px;
+    height: 30px;
+    /*padding-right: 30px;*/ /* pour que les caractères ne dépasent pas l'image Load*/
+
+}
+
+#imgLoad{
+    position:absolute;
+    left: 280px;
+    top:2px;
+    display: none;
+
+}
+
+#suggestions{
+    padding-left: 0px;
+    position: absolute;
+    border: 1px solid black;
+    left: 0px;
+    top: 10px;
+    display: none;
+
+}
+
+#suggestions li{
+    display: block; /* valait list-item */
+    padding: 2px;
+    
+}
+
+#suggestions li:hover{
+    background-color: lightblue;
+    cursor: pointer;
+}

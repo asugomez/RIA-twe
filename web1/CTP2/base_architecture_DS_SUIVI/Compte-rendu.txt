@@ -1,0 +1,13 @@
+Compte Rendu CTP2 BACKEND
+Asuncion Gomez
+
+EX1)
+ON assume que $selection dans la fonction listerProjets() fair référence à l'année
+
+EX2) 
+on cree un lien vers contributions dans la page projets
+
+NEVER TRUST USER INPUT --> valider and ' '
+
+j'ai utilisé des dif. methodes de debbugage
+comme: die("id recu : $idProjet");
