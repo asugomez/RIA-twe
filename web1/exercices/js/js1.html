@@ -14,18 +14,64 @@ function debug(s) {
 function show(refOrId,display) {
 	// affiche l'élément dont la référence ou l'id est fourni
 	// le paramètre display doit valoir block par défaut
+	if(typeof refOrId == "undefined"){
+		return;
+	}
+
+	if(display == "undefined"){
+		display="block";
+	}
+
+	if(typeof refOrId == "string"){
+		element = document.getElementById(refOrId);
+		element.display=display;
+	}
+	if(typeof refOrId == "object"){
+		refOrId.display=display;
+	}
+	else{
+		return;
+	}
 }
 
 function hide(refOrId) {
 	// cache l'élément dont la référence ou l'id est fourni
+	if(typeof refOrId == "undefined"){
+		return;
+	}
+	if(typeof refOrId == "string"){
+		refOrId = document.getElementById(refOrId);
+	}
+	refOrId.display="none";
+	
 }
 
 function html(refOrId, val) {
 	// affecte une valeur à l'élément dont la référence ou l'id est fourni; si val n'est pas fourni, on renvoie son contenu
+	if(val==undefined || (typeof refOrId == "undefined")){
+		return refOrId.innerHTML;
+	}
+
+	if(typeof refOrId == "string"){
+		refOrId = document.getElementById(refOrId);
+	
+	}
+	refOrId.innerHTML = val;
 }
 
 function val(refOrId, val) {
 	// affecte une valeur à l'élément dont la référence ou l'id est fourni; si val n'est pas fourni, on renvoie son contenu
 	// l'élément est un champ de formulaire
+
+	if(val==undefined){
+		return refOrId.value;
+	}
+	if(typeof refOrId == "undefined"){
+		return refOrId.value;
+	}
+	else if(typeof refOrId == "string"){
+		refOrId= document.getElementById(refOrId);
+	}
+	refOrId.value=val;
 }
 </script>
