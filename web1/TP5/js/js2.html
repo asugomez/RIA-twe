@@ -1,0 +1,77 @@
+<head>
+
+<script>
+
+function boucle(iPeriode,fnCbTraitement,fnCbContinuer) {
+	// Objectif : déclencher un appel à la fonction fnCbTraitement
+	// toutes les iPeriode secondes, 
+	// tant que fnCbContinuer renvoie vrai
+
+	// fnCbTraitement est une fonction de rappel ("CALLBACK")
+	// elle sera appelée plus tard
+	// pour l'appeler, il suffit d'ajouter les parenthèses !
+
+	// rendre le 3ème argument optionnel
+	var boucle_interne = function(){
+		//Dans le cas où fncbCOntinuer n'est pas definie, il faut verifier ça
+		//avant d'appeler à la fonction
+		if((fnCbContinuer==undefined) || fnCbContinuer()){
+			fnCbTraitement();
+
+			window.setTimeout(boucle_interne, iPeriode*1000);
+		}
+	}
+
+	boucle_interne();
+	
+
+}
+
+// TDD : Test-Driven-Development
+
+function traiter(){
+	console.log("appel à traiter");
+}
+
+var compteur=0;
+function poursuivre(){
+	compteur++;
+	console.log("appel à poursuivre, compteur = " + compteur);
+	if(compteur>5)return false;
+	else return true;
+}
+
+
+var oDefault = {
+	periode: 5, 
+	fnTraitement: function(){
+		console.log("appel à traiter"); 
+	},
+	fnPoursuite : function() {
+		return true;
+	}
+};2
+
+
+// fonction de rappel:
+//fonction passée en argument d'une fonction
+//qui sera appelée ultérieuement
+boucle(3,traiter,poursuivre);
+
+
+</script>
+</head>
+<body>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
