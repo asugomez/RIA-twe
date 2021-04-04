@@ -12,11 +12,41 @@ function init(){
     refListNoms = document.getElementById("listNoms");
 }
 
+var cache = {
+    currentSuggestions : []
+}
+
 function integrer(reponse){
     console.log("reponse: "+reponse);
-    html("ulNom",reponse);
-    show("listNoms","block");
+    hide("listNoms");
     hide("imgLoad");
+
+    oRep = JSON.parse(reponse);
+    console.log(oRep);
+    //TODO: parcourir l'objet reponse du serveur
+    var i;
+    var nextItem = "";
+
+    refSuggestions.innerHTML = "";
+
+
+    if(oRep.etudiants.length == 0) return;
+
+    for(i=0; i<oRep.etudiants.length;i++){
+        nextItem = "<li>";
+        //afficher le nom p.Nom
+        nextItem += oRep.etudiants[i].prenom.substr(0,1) + ". ";
+        nextItem += oRep.etudiants[i].nom.substr(0,1).toUpperCase();
+        nextItem += oRep.etudiants[i].nom.substr(1).toLowerCase();
+
+        nextItem += "</li>";
+
+        console.log(nextItem);
+        
+        refSuggestions.innerHTML += nextItem;
+    }
+    html("ulNom",reponse);
+    show("ulNom","block");
 
 }
 
