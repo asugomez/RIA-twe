@@ -25,9 +25,8 @@ if (isset($_GET["debutNom"]))
 		)
 		{	// EXO2 afficher nom ET prénom 
 			echo "<li>$tabResultats[2] $tabResultats[1] </li>";
+            //echo $tabResultats[0];
 		}
-
-		
 	}
 
 	die("");

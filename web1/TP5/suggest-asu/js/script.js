@@ -25,6 +25,15 @@ function suggerer(refSaisie){
     
     saisieVal = refSaisie.value;
     console.log(saisieVal);
+    show("imgLoad","inline-block");
+    //declencher une req
+    ajax({ //data:, type:,
+            url:"data.php",
+            data:{"debutNom":val(refSaisie),"cle":"valeur"},
+            callback:integrer
+
+    });
+    /*
     if(saisieVal!=""){
         show("imgLoad","inline-block");
         //declencher une req
@@ -38,7 +47,7 @@ function suggerer(refSaisie){
        
     } else{
         hide("imgLoad");
-    }
+    }*/
 
 }
 
