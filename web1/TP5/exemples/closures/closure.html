@@ -2,6 +2,8 @@
 // Focus sur les fermetures (aka "closure")
 // http://www.w3schools.com/js/js_function_closures.asp
 
+//variables created without a declaration keyword (var, let, or const) are always global, even if they are created inside a function.
+
 var compteur=0; 
 
 function trace(s) {
@@ -23,5 +25,19 @@ var trace2 = mkTrace();
 var trace3 = mkTrace(); 
 
 // Chacune des fonctions trace<i> manipule son propre scope qui contient une variable compteur_interne différente
+
+
+//un autre exemple
+var add = (function () {
+  var counter = 0;
+  return function(){
+	  counter += 1; 
+	  return counter
+  }
+})();
+
+add();
+add();
+add();
 
 </script>

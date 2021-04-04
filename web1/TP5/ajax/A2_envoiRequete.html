@@ -31,6 +31,8 @@ function traiteReponse()
 	    if (request.status == 200) 
 	    {
 			reponse = request.responseText;
+			var refDivReponse = document.getElementById("reponse");
+			refDivReponse.innerHTML=reponse;
 	    }
 	}
 } 
@@ -40,13 +42,25 @@ function envoyer(refBtn)
 	var refCle = document.getElementById("cle");
 	var type;
 
+	if(refBtn.value == "envoi GET"){
+		console.log("get");
+		type="GET";
+	} 
+	else{
+		type="POST";
+		console.log("post");
+	}
+
+	//function envoiRequete(type,url,donnees,callback)
+	envoiRequete(type,"A2_data.php", "cle=" + refCle.value,traiteReponse());
+
 }
 
 </script>
 
 <input type="text" id="cle"/>
-<input type="button" value="envoi GET"/>
-<input type="button" value="envoi POST"/>
+<input type="button" value="envoi GET" onclick="envoyer('this');"/>
+<input type="button" value="envoi POST"onclick="envoyer('this');"/>
 
 <div id="reponse">
 </div>

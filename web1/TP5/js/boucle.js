@@ -1,29 +1,6 @@
-<head>
-
-<script>
 
 function boucle(iPeriode,fnCbTraitement,fnCbContinuer) {
 	console.log("appel à boucle");
-
-/*
-	if (fnCbContinuer == undefined) {
-		fnCbContinuer = function() {return true;}; 
-	}
-*/
-
-	// fnCbTraitement est une fonction de rappel ("CALLBACK")
-	// elle sera appelée plus tard
-	// pour l'appeler, il suffit d'ajouter les parenthèses !
-
-	// Contraintes: 
-	// utiliser setTimeout 
-	// sans ses arguments optionnels 
-
-	// On prépare une fonction boucle_interne
-	// qui aura dans son scope 
-	// enregistré les valeurs des paramètres passés 
-	// à la fonction boucle 
-
 	// rendre le 3ème argument optionnel
 	var boucle_interne = function() {
 		console.log("appel à boucle interne");
@@ -57,17 +34,6 @@ function poursuivre() {
 	else return true; 
 }
 
-// fonction de rappel (callback): 
-// fonction passée en argument d'une fonction
-// qui sera appelée ultérieurement  
-// boucle(3,traiter,poursuivre);
-// SURTOUT PAS traiter() ou poursuivre()
-// On passerait alors les résultats de l'exécution de traiter()
-
-// boucle(3,traiter);
-
-
-
 var oDefault = {
 	periode: 5, 
 	fnTraitement: function(){
@@ -79,46 +45,6 @@ var oDefault = {
 };
 
 function boucleV2(oConfig) {
-	
-
-/*
-	// On pourrait utiliser un objet de config par défaut local 
-	oParams = {
-		periode: 5, 
-		fnTraitement: function(){
-			console.log("appel à traiter"); 
-		},
-		fnPoursuite : function() {
-			return true;
-		}
-	}
-*/
-
-	
-
-	/*
-	// On prépare un objet contenant les paramètres effectifs à utiliser 
-	var oParams = oDefault; 
-
-	// DANGER ! 
-	// On prend une référence, ce n'est pas une copie
-	// => On va modifier l'objet par défaut 
-	// Il existe des fonctions de clonage (superficiel) 
-	// https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects/
-
-	//var oParams = {}; 
-	if (oConfig.periode != undefined) 
-		oParams.periode = oConfig.periode;
-	//else  oParams.periode = oDefault.periode;
-
-	if (oConfig.fnTraitement != undefined) 
-		oParams.fnTraitement = oConfig.fnTraitement;
- 	//else  oParams.fnTraitement = oDefault.fnTraitement;
-
-	if (oConfig.fnPoursuite != undefined) 
-		oParams.fnPoursuite = oConfig.fnPoursuite;
-	//else  oParams.fnPoursuite = oDefault.fnPoursuite; 
-	*/
 
 	var oParams = enrichir(oDefault, oConfig);
 	// renvoie un nouvel objet 
@@ -139,6 +65,7 @@ function boucleV2(oConfig) {
 	}
 	boucle_interne(); 
 }
+
 
 
 boucleV2({	});
@@ -166,19 +93,6 @@ function enrichir(oDefault, oConfig) {
 	return aux; 
 }
 
-</script>
-</head>
-<body>
+//boucle(3,traiter,poursuivre);
 
-
-</body>
-
-
-
-
-
-
-
-
-
-
+trace("Chargement lib boucle ..");

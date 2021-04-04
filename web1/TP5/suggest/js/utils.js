@@ -81,6 +81,7 @@ function debug(s) {
 }
 
 function show(refOrId,display) {
+	console.log("appel show");
 	// affiche l'élément dont la référence ou l'id est fourni
 	// le paramètre display doit valoir block par défaut
 	if(typeof refOrId == "undefined"){

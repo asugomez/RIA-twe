@@ -45,13 +45,32 @@
 </script>
 
 <script type="text/javascript">
-function maj() {
-	// TODO : copie le code depuis le textarea "code" vers le div "rendu"
-}
+
+var refTextArea = null;
+
 
 function init()
 {
+
 	console.log("Code a completer a l'aide de la librairie de fonctions 'boucle'");
+
+	refTextArea = document.getElementById("code");
+	console.log("aqui: "+refTextArea);
+	//boucleV2(oConfig);
+	boucle(3, maj, poursuivre);
+
+}
+
+function maj() {
+		// TODO : copie le code depuis le textarea "code" vers le div "rendu"
+		//copie le code depuis le textarea "code"
+		console.log("appel a la fonction maj");
+
+		textValue = refTextArea.value;
+		//html(code,textValue);
+		console.log("textvalue: "+textValue);
+		html("rendu",textValue);
+
 }
 
 </script>
@@ -61,7 +80,7 @@ function init()
 <body onload="init();">
 
 <div id="inputs">
-	<input value="actualiser le rendu" type="button">
+	<input value="actualiser le rendu" type="button" onclick="">
 	<input id="cb" type="checkbox">
 	<label for="cb">automatiquement</label>
 </div>
@@ -71,4 +90,8 @@ function init()
 
 <div id="rendu">
 </div>
-</body></html>
+
+
+</body>
+
+</html>
