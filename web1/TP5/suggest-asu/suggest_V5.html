@@ -1,0 +1,188 @@
+<!-- suggest V1.html 
+à placer avec le contenu du répertoire A4_tw2_suggest 
+sous le répertoire de publication web de votre serveur (www)
+
+1) Contrainte de structure : 
+le champ d'entrée texte doit pouvoir être placé
+après un texte de taille quelconque  
+-->
+<style>
+/* 2) Présentation */
+#conteneur {
+	position:relative;/*devient un conteneur*/
+	display:inline;
+}
+#saisie {
+	width:200px;height:30px;
+	border:1px solid black;
+	padding:5px;
+	padding-right:28px;
+}
+#imgLoad{
+	position:absolute;display:none;
+	top:3px;right:11px;
+}
+#suggestions {
+	position:absolute;top:8px;
+	left:0px;width:188px;
+	border:1px solid black;
+	
+	padding-left:0px;
+	padding:5px;
+	display:none;
+	background-color:white;
+}
+#suggestions li {
+	display:block;
+}
+#suggestions li:hover {
+	cursor:pointer;
+	background-color:lightgrey;
+}
+
+</style>
+
+<script src="utils.js"></script>
+<script src="ajax.js"></script>
+
+<script>
+// Interaction 1) : clic sur une suggestion 
+// Où placer le onclick ? 
+// Sur <ul> : cf. propagation des événements : 
+// un clic sur un <li> se propage à ses parents, dont <ul>
+// Interaction 2) : saisie d'un texte dans le champ
+
+function choisir(contexte) {
+	// placer le contenu cliqué dans le champ d'entrée texte
+	// contexte.target est une référence vers l'elt cliqué 
+	// html(contexte.target) est son contenu 
+
+
+	// V5 : il faut récupérer le numéro de l'élément cliqué
+	// qui correspond au numéro de la case du cache à utiliser pour compléter le champ 
+	// contexte.target <=> elt cliqué 
+	console.log("indice : " + contexte.target.id.substr(5)); // sugg_<ce que je veux> 
+	// Attention : ceci est une chaine 
+	var indice = parseInt(contexte.target.id.substr(5));
+	var meta = cache.currentSuggestions[indice]; 
+	val("saisie",meta.prenom  + " " + meta.nom);
+	// cacher les suggestions
+	hide("suggestions"); 
+}
+
+var cache = {
+	currentSuggestions : []
+}; 
+
+function integrer(reponse) {
+	console.log("recu : " + reponse);
+
+	var i; 
+	var chaineSuggestions = ""; 
+
+	// V4 : les données reçues sont du JSON dans une chaine de caractères
+	// 1) on transforme la chaine en un objet 
+	var oRep = JSON.parse(reponse); 
+	console.log(oRep);
+
+	// On stocke dans un cache les données du serveur 
+	cache.currentSuggestions = oRep.suggestions; 
+
+	// NB : en HTML5, 
+	// des attributs data-NOM peuvent être affectés 
+	// aux balises
+	// pour stocker des méta-données directement dans les balises
+	// et non pas dans un cache global
+	// => c'est ce qu'on utilise en JQUERY 
+
+
+	// 2) SI l'objet n'est pas vide, on le parcourt, on crée la structure XHTML à insérer dans les suggestions 
+	if (oRep.suggestions.length != 0) {
+		for(i=0;i<oRep.suggestions.length;i++) {
+			// nom (premiere lettre en maj) 
+			// première lettre du prénom 
+
+			// On ajoute un id pour chaque suggestion
+			// permettant de se souvenir de l'indice de la suggestion dans le cache 
+			chaineSuggestions += "<li id=\"sugg_" + i + "\">" 
+								+ oRep.suggestions[i].nom.substr(0,1)
+								+ oRep.suggestions[i].nom.substr(1).toLowerCase()
+								+ " " 
+								+ oRep.suggestions[i].prenom.substr(0,1) + "."
+								+ "</li>";
+			console.log("valeur de chaine actuelle : "  + chaineSuggestions);
+		}
+		html("suggestions",chaineSuggestions);
+		if (chaineSuggestions != "") show("suggestions");
+	}
+
+
+	hide("imgLoad");
+}
+
+function saisir(refChampSaisie) {
+	// cacher les suggestions
+	hide("suggestions"); 
+	// récupérer le contenu de ce champ 
+	var contenu = val("saisie");
+	if (contenu != "") {	
+		// Si le champ n'est pas vide : 
+		// afficher l'image de chargement
+		show("imgLoad");
+		// déclencher une req. pour récupérer les suggestions 
+		
+		//V4
+		// on change la couche information 
+		// qui permet d'indiquer d'indiquer un critère de recherche
+		// et utilise une base de données
+		ajax({	
+				data:{"debutNom":val(refChampSaisie), 
+						 "critere":""}, 
+				//type:,
+				url:"data_bdd.php", 				
+				callback:integrer
+		});
+		
+		// quand la reponse parviendra au navigateur, 
+		// celui-ci déclenchera un appel à integrer en passant 
+		// la réponse en paramètre
+	} else {
+		// Si le champ est vide :
+		// on cache l'image 
+		hide("imgLoad");
+	}
+}
+
+</script>
+<body>
+Selectionner : 
+<div id="conteneur">
+	<input type="text" id="saisie" onkeyup="saisir(this);"/>
+	<ul id="suggestions" onclick="choisir(event);">
+	</ul>
+	<img 	id="imgLoad"
+				src="ressources/ajaxLoader2.gif" />
+</div>
+
+<p>
+On veut afficher Nom (premiere lettre du prenom) dans les suggestions <br/>
+ALler + loin : couleurs differentes pour la partie recherchee <br/>
+
+On veut saisir prenom NOM dans le champ de saisie <br />
+
+<!--
+Les données à saisir sont différentes des données affichées
+=> Il faut conserver les données qui viennent du serveur 
+=> meme après les avoir affichées 
+=> On utilise un cache (var globale du navigateur) 
+-->
+Appuyer sur ESC pour cacher les suggestions
+
+</p>
+</body>
+
+
+
+
+
+
