@@ -1,0 +1,95 @@
+<script src="jquery-3.5.1.min.js">
+// rien ici ! 
+</script>
+
+<script>
+function toggle(refBtnClique) {
+	// TODO: Au clic sur "Cacher", 
+	// on cache les P. du #contenu, les boutons "+"
+	// et on change le label des boutons 
+	// Un nouveau clic réaffichera 
+
+	// ref jQuery à partir d'une ref JS : 
+	// $(refBtnClique).val("cliqué");
+	// + tard : $(this) ... 
+
+	// Si (btn vaut Cacher) 
+	// console.log($("input[value='Cacher']"));
+	// console.log($("input[value='Cacher']").length);
+	if ($("input[value='Cacher']").length) {
+		// on cache 
+		$("#contenu *").hide("slow");
+		$("input[value='+']").hide();
+		// on change label des boutons 
+		$("input[value='Cacher']").val("Afficher");
+	} else {
+		// on affiche
+		$("#contenu *").show("fast");
+		$("input[value='+']").show();
+		$("input[value='Afficher']").val("Cacher");
+	}
+}
+
+
+// un paragraphe qui devra être inséré
+var jP = $("<p>Nouveau</p>");
+
+// Au clic sur "+", on ajoute un nouveau P dans #contenu 
+// en haut ou en bas 
+function addP(refJSBtn) {
+	
+
+	// discriminer quel bouton a été appuyé 
+	// 1) donner un id au bouton et 
+	// ET Récupérer l'id du bouton cliqué 
+
+	// 2) deux fonctions différentes addPHaut, addPBas 
+	// 3) récupérer une ref. JQ sur l'elt à partir de la réfence JS
+	var jQBtn = $(refJSBtn); 
+	// 3) ET observer la structure qui suit 
+	// console.log(jQBtn.next().is("#contenu"));
+
+	// jQBtn.sonNUmero(listeBtn+)
+	
+	// 4) Et récupérer le numéro du bouton cliqué parmi les boutons +
+	//console.log($("input[value='+']").index(jQBtn));
+
+	// 5) passer un argument à la fonction 
+	var nbP = $("#contenu p").length; 
+	var jClone = jP.clone(); 
+	jClone.html("P"+(nbP+1));
+	
+	if (jQBtn.next().is("#contenu")) {
+		// en haut 
+		$("#contenu").prepend(jClone); 
+	} else {
+		// en bas
+		$("#contenu").append(jP.clone().html("P"+(nbP+1))); 
+	}
+
+
+
+
+
+}
+</script>
+
+<style>
+#contenu {margin:5px 0px;}
+</style>
+
+<body>
+	<input type="button" onclick="toggle(this);" value="Cacher" />
+	<input type="button" onclick="addP(this);" value="+" />
+	
+	<div id="contenu">
+		<p >P1</p>
+		<p >P2</p>
+		<p >P3</p>
+	</div>
+
+	<input type="button" onclick="toggle(this);" value="Cacher" />
+	<input type="button" onclick="addP(this);" value="+" />
+	
+
+</body>

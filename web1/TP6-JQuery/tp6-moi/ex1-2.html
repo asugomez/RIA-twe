@@ -1,0 +1,122 @@
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- **** H E A D **** -->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TP 6</title>
+    
+</head>
+<style>
+
+    #main{
+        display: block;
+        align-items: center;
+    }
+    .allume{
+        background-color: yellow;
+    }
+
+    .exemple2{
+        display: none;
+    }
+
+
+</style>
+
+<script>
+    function decollage(val){
+        //$ est une alias pour une fonction qui s'appelle jQuery
+        //jQuery(selecteurCSSEtendu, [context])
+        //renvoie un objet jQuery représentant une ensemble de balises HTML
+        //on manipule un ensemble d'élements 
+
+        //console.log(val=="Afficher");
+
+        if(val.value=="Afficher"){
+            console.log("aqui");
+            $("div#contenu").addClass("allume").show("slow"); //on ajoute la class "allume" à l'ensemble d'élements p qui ont la class "exemple"
+            //console.log($("#contenu").addClass("allume").show("slow"));
+            $("input.btnAfficherCacher").attr('value', 'Cacher');
+        }else{
+
+
+            $("div#contenu").removeClass("allume").hide("slow"); 
+
+            $("input.btnAfficherCacher").attr('value', 'Afficher');
+        }
+        /**
+         *  SI on ne peut pas utiliser "this", on le fait de cette manière
+         * $("input[value='Cacher']").length){} --> donc s'il existe cet élement ------>
+         */
+        
+    }
+
+    var i=5;
+    function addP(val){
+
+        // pour ajouter un élement dans une position en particulier --> on pourrait utiliser next()
+        // on peut aussi récupérer le numéro de l'élement  (.index)
+        console.log(val.id);
+        var txt = "<p> New paragraphe ";
+        txt+= i;
+        txt+=" </p>";
+        i+=1
+        if(val.value=="+"){
+            if(val.id=="btnPlusMoinsHaut"){
+                $("div#contenu").prepend(txt);
+
+            }else{
+                $("div#contenu").append(txt);
+            }
+            //$("input.btnPlusMoins").attr('value','-');
+
+        }else{
+            if(val.id=="btnPlusMoinsHaut"){
+                $("div#contenu").prepend(txt);
+
+            }else{
+                $("div#contenu").append(txt);
+            }
+            $("input.btnPlusMoins").attr('value','+');
+        }
+
+    }
+</script>
+<body>
+    <div id="main" class="">
+        <div class="btnHaut">
+            <input type="button" id="btnDecollageHaut" class="btnAfficherCacher" value="Afficher" onclick="decollage(this)">
+
+            <input type="button" id="btnPlusMoinsHaut" class="btnPlusMoins" value="+" onclick="addP(this)">
+
+        </div>
+        
+
+        <div id="contenu" class="exemple2">
+            <p id="par1" class="exemple"> Paragraphe 1</p>
+            <div class="exemple"> Div 1</div>
+            <p id="par2" class="exemple"> Paragraphe 2</p>
+            <p id="par3" class="exemple"> Paragraphe 3</p>
+            <div class="exemple"> Div 2</div>
+            <p id="par4" class="exemple"> Paragraphe 4</p>
+            <div class="exemple"> Div 3</div>                
+        </div>
+
+        <div class="btnBas">
+            <input type="button" id="btnDecollageBas" class="btnAfficherCacher" value="Afficher" onclick="decollage(this)">
+
+            <input type="button" id="btnPlusMoinsBas" class="btnPlusMoins" value="+" onclick="addP(this)">
+        </div>
+        
+    </div>
+
+
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+
+</body>
+</html>
+
