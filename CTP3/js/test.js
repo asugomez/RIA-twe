@@ -1,21 +1,13 @@
-<script src="jquery-3.4.1.min.js"></script>
-<script>
-var apiRoot = "http://tomnab.fr/paragraphes-api";
-//var apiRoot = "http://localhost/rest/api";
-//var apiRoot = "http://localhost/paragraphes-api";
-//var apiRoot = "http://localhost/RIA/web1/TP&-JQuery/tp6-moi/ex5.html";
 
-var hash = "7a45f4d78a9f823bcf513b5f847128fe"; 
-var idArticle = 2182;
 
 $(document).ready(function(){
 	authenticate(getUsers);
-	authenticate(getArticles);
+	//authenticate(getArticles);
 	//authenticate(postArticle);
 	//postArticle();  
 	//putArticle(11,"T3");
 	//deleteArticle(2182,hash);
-	getParagraphes();
+	//getParagraphes();
 });
 
 function getParagraphes(){
@@ -117,6 +109,3 @@ function deleteArticle(id,titre){
 	dataType: "json"
 	});
 }
-
-
-</script>

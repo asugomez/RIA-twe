@@ -1,0 +1,786 @@
+{
+	"info": {
+		"_postman_id": "91fb0c03-c89e-498e-8e4d-6fe851df31df",
+		"name": "chat-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/authenticate?user=toto&password=titi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"authenticate"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "toto"
+						},
+						{
+							"key": "password",
+							"value": "titi"
+						}
+					]
+				},
+				"description": "Authentification et récupération du hash"
+			},
+			"response": []
+		},
+		{
+			"name": "/users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"value": "{{hash}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users"
+					]
+				},
+				"description": "Lister les utilisateurs"
+			},
+			"response": []
+		},
+		{
+			"name": "/users?status=authorized",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users?status=authorized",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "authorized"
+						}
+					]
+				},
+				"description": "Lister les utilisateurs autorisés"
+			},
+			"response": []
+		},
+		{
+			"name": "/users?status=blacklisted",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"value": "{{hash}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users?status=blacklisted",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "blacklisted"
+						}
+					]
+				},
+				"description": "Lister les utilisateurs blacklistés"
+			},
+			"response": []
+		},
+		{
+			"name": "/users/id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users",
+						"1"
+					]
+				},
+				"description": "Affiche les méta-données de l'utilisateur dont l'id est fourni"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations"
+					]
+				},
+				"description": "Liste les conversations"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations?mode=actives",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations?mode=actives",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "actives"
+						}
+					]
+				},
+				"description": "Liste les conversations actives"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations?mode=inactives",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations?mode=inactives",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "inactives"
+						}
+					]
+				},
+				"description": "Liste les conversations inactives"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"2"
+					]
+				},
+				"description": "Affiche les méta-données de la conversation dont l'id est passé en paramètre"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id/messages",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/2/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"2",
+						"messages"
+					]
+				},
+				"description": "Affiche les messages des utilisateurs non blacklistés de la conversation dont l'id est fourni"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id/messages/id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/2/messages/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"2",
+						"messages",
+						"2"
+					]
+				},
+				"description": "Affiche les méta-données d'un message dont l'id est fourni. Ce message doit appartenir à la conversation dont l'id est fourni. "
+			},
+			"response": []
+		},
+		{
+			"name": "/users?user=&password=",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users?user=toto&password=titi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "toto"
+						},
+						{
+							"key": "password",
+							"value": "titi"
+						}
+					]
+				},
+				"description": "Crée un nouvel utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations?theme=",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations?theme=toto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations"
+					],
+					"query": [
+						{
+							"key": "theme",
+							"value": "toto"
+						}
+					]
+				},
+				"description": "Crée une nouvelle conversation"
+			},
+			"response": []
+		},
+		{
+			"name": "/authenticate",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"authenticate"
+					]
+				},
+				"description": "Génère un nouveau hash pour l'utilisateur connecté"
+			},
+			"response": []
+		},
+		{
+			"name": "/users/?password=",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users?password=tata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "password",
+							"value": "tata"
+						}
+					]
+				},
+				"description": "Change le mot de passe de l'utilisateur connecté"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id/messages?contenu=",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/1/messages?contenu=message1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"1",
+						"messages"
+					],
+					"query": [
+						{
+							"key": "contenu",
+							"value": "message1"
+						}
+					]
+				},
+				"description": "Poste un nouveau message de l'utilisateur connecté dans la conversation dont l'id est fourni"
+			},
+			"response": []
+		},
+		{
+			"name": "/users/id?status=blacklisted",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users/3?status=blacklisted",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users",
+						"3"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "blacklisted"
+						}
+					]
+				},
+				"description": "Blackliste l'utilisateur dont l'id est fourni"
+			},
+			"response": []
+		},
+		{
+			"name": "/users/id?status=authorized",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users/3?status=authorized",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users",
+						"3"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "authorized"
+						}
+					]
+				},
+				"description": "Autorise l'utilisateur dont l'id est fourni"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/3?theme=theme mis à jour",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/3?theme=theme mis à jour",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"3"
+					],
+					"query": [
+						{
+							"key": "theme",
+							"value": "theme mis à jour"
+						}
+					]
+				},
+				"description": "Met à jour le thème d'une conversation"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id?mode=inactive",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/3?mode=active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"3"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "active"
+						}
+					]
+				},
+				"description": "Désactive la conversation dont l'id est fourni"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id?mode=active",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "hash",
+						"type": "text",
+						"value": "{{hash}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/3?mode=active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"3"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "active"
+						}
+					]
+				},
+				"description": "Active la conversation dont l'id est fourni"
+			},
+			"response": []
+		},
+		{
+			"name": "/users",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "hash",
+						"value": "{{hash}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/users/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"users",
+						"3"
+					]
+				},
+				"description": "Supprime un utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "hash",
+						"value": "{{hash}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"3"
+					]
+				},
+				"description": "Supprime la conversation dont l'id est fourni et ses messages"
+			},
+			"response": []
+		},
+		{
+			"name": "/conversations/id/messages/id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "hash",
+						"value": "{{hash}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/TWE_2021/chat-api/api/conversations/1/messages/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"TWE_2021",
+						"chat-api",
+						"api",
+						"conversations",
+						"1",
+						"messages",
+						"8"
+					]
+				},
+				"description": "Supprime un message dont l'id est fourni. Ce message doit appartenir à la conversation dont l'id est fourni"
+			},
+			"response": []
+		}
+	]
+}

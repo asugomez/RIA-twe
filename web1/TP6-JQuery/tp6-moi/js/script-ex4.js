@@ -48,7 +48,9 @@
     function mkTextarea(contenu){
         var jCTa=jTa.clone(true);
         //jCTa.html(refJP.html());
+        console.log("contenu: "+contenu);
         jCTa.val(contenu).data("contenuInitial",contenu);
+        console.log("contenuinitial: "+jCTa.data(["contenuInitial"]));
         return jCTa;
     }
 
@@ -92,6 +94,7 @@
         });
 
         $(document).on("mouseover","textarea",function(){
+            console.log("aqui");
             console.log($(this).data());
         });
         /*
